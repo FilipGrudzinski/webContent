@@ -11,17 +11,36 @@ import UIKit
 class ViewController: UIViewController {
 
    
+    @IBOutlet weak var textField: UITextField!
     
     @IBOutlet weak var webView: UIWebView!
     
+    @IBAction func goButton(_ sender: Any) {
+        
+    if let userURL = textField.text{
+            
+       let url = URL(string: userURL)
+            
+            webView.loadRequest(URLRequest(url: url!))
+            
+        } else {
+            
+          print("Error")
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
         // Do any additional setup after loading the view, typically from a nib.
         /*
         let url = URL(string: "https://www.stackoverflow.com")!
         webView.loadRequest(URLRequest(url: url))
         */
         
+        /*
         if let url = URL(string: "https://www.stackoverflow.com") {
             
             let request = NSMutableURLRequest(url: url)
@@ -48,14 +67,19 @@ class ViewController: UIViewController {
             
         
         }
-        
-    }
-
+        */
+    
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        self.view.endEditing(true)
+    }
 }
 
